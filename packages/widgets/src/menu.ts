@@ -1512,8 +1512,15 @@ namespace Private {
     let { width, height } = node.getBoundingClientRect();
 
     // Adjust the X position of the menu to fit on-screen.
-    if (!forceX && x + width > px + cw) {
-      x = px + cw - width;
+    if (!forceX) {
+      // Open to the right if the menu fits on-screen.
+      if (x + width > px + cw) {
+        x = px + cw - width;
+      }
+      // Open to the left.
+      else {
+        x = px + cw - 2 * width;
+      }
     }
 
     // Adjust the Y position of the menu to fit on-screen.
